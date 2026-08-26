@@ -27,4 +27,4 @@ function Contact() { return <section className="section contact" id="contact"><d
 
 function Footer() { return <footer><div className="footer-top"><div><Logo /><p>A creator-first agency for the next wave of live voices.</p></div><div className="footer-links"><div><small>Explore</small><a href="#process">How It Works</a><a href="#creators">Creators</a></div><div><small>Connect</small><a href={config.whatsappUrl}>WhatsApp</a><a href={config.telegramUrl}>Telegram</a><a href={`mailto:${config.email}`}>Email</a></div></div></div><div className="footer-bottom"><span>© 2026 {config.agencyName}. Placeholder content for client customization.</span><span>Privacy Policy&nbsp;&nbsp; Terms of Service&nbsp;&nbsp; Cookie Policy</span></div></footer>; }
 
-export default function App() { return <><Navbar /><main><Hero /><Process /><Creators /><Earnings /><Support /><FAQ /><Contact /></main><Footer /></>; }
+export default function App() { return <><Navbar /><main><Hero /><Process /><Creators />{/* <Earnings /> */}<Support /><FAQ /><Contact /></main><Footer /></>; }
