@@ -3,7 +3,7 @@ import heroImageTwo from './assets/images/hero (2).jpg';
 import heroImageThree from './assets/images/hero (3).jpg';
 
 export const siteConfig = {
-  agencyName: 'Fraol Agent',
+  agencyName: 'Agent Fraol',
   agencyShortName: 'FA',
   whatsapp: '+251 925 259 294',
   whatsappUrl: 'https://wa.me/251925259294',
