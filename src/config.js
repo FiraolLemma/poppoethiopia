@@ -3,14 +3,14 @@ import heroImageTwo from './assets/images/hero (2).jpg';
 import heroImageThree from './assets/images/hero (3).jpg';
 
 export const siteConfig = {
-  agencyName: 'Luma House',
-  agencyShortName: 'LH',
-  whatsapp: '+251 XXX XXX XXX',
-  whatsappUrl: 'https://wa.me/251000000000',
-  telegram: '@youragency',
-  telegramUrl: 'https://t.me/youragency',
-  email: 'hello@example.com',
-  phone: '+251 XXX XXX XXX',
+  agencyName: 'Fraol Agent',
+  agencyShortName: 'FA',
+  whatsapp: '+251 925 259 294',
+  whatsappUrl: 'https://wa.me/251925259294',
+  telegram: '@nomoreboundary',
+  telegramUrl: 'https://t.me/nomoreboundary',
+  email: 'fraollemma0506@gmail.com',
+  phone: '+251 925 259 294',
   registrationUrl: 'https://example.com/poppo-registration',
   downloadUrl: 'https://example.com/poppo-download',
   socials: { Instagram: '#', TikTok: '#', YouTube: '#' },
