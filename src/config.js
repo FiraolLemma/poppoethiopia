@@ -1,6 +1,8 @@
 import heroImageOne from './assets/images/hero (1).jpg';
 import heroImageTwo from './assets/images/hero (2).jpg';
 import heroImageThree from './assets/images/hero (3).jpg';
+import loginImage from './assets/images/login.png';
+import agentImage from './assets/images/agent.png';
 
 export const siteConfig = {
   agencyName: 'Agent Fraol',
@@ -20,8 +22,8 @@ export const siteConfig = {
     { src: heroImageThree, alt: 'Creator in colorful studio lighting' }
   ],
   creatorImages: [
-    { name: 'Creator Name', category: 'Entertainment', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80' },
-    { name: 'Creator Name', category: 'Lifestyle', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80' },
-    { name: 'Creator Name', category: 'Music & Chat', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=700&q=80' }
+    { name: 'Creator Name', category: '', image: loginImage },
+    { name: 'Creator Name', category: 'Lifestyle', image: agentImage },
+    { name: 'Creator Name', category: 'Authenticate', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=700&q=80' }
   ]
 };
