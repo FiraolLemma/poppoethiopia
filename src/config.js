@@ -1,3 +1,7 @@
+import heroImageOne from './assets/images/hero (1).jpg';
+import heroImageTwo from './assets/images/hero (2).jpg';
+import heroImageThree from './assets/images/hero (3).jpg';
+
 export const siteConfig = {
   agencyName: 'Luma House',
   agencyShortName: 'LH',
@@ -11,9 +15,9 @@ export const siteConfig = {
   downloadUrl: 'https://example.com/poppo-download',
   socials: { Instagram: '#', TikTok: '#', YouTube: '#' },
   heroImages: [
-    { src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85', alt: 'Creator smiling during a live stream' },
-    { src: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85', alt: 'Creator posing for a portrait' },
-    { src: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85', alt: 'Creator in colorful studio lighting' }
+    { src: heroImageOne, alt: 'Creator smiling during a live stream' },
+    { src: heroImageTwo, alt: 'Creator posing for a portrait' },
+    { src: heroImageThree, alt: 'Creator in colorful studio lighting' }
   ],
   creatorImages: [
     { name: 'Creator Name', category: 'Entertainment', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80' },
