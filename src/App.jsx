@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { siteConfig as config } from './config';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
-const navItems = [['Why Join', 'benefits'], ['How It Works', 'process'], ['Creators', 'creators'], ['FAQ', 'faq'], ['Contact', 'contact']];
+const navItems = [['How It Works', 'process'], ['Creators', 'creators'], ['FAQ', 'faq'], ['Contact', 'contact']];
 
 function Logo() { return <a className="logo" href="#home" aria-label={`${config.agencyName} home`}><span>{config.agencyShortName}</span><b>{config.agencyName}</b></a>; }
 function Button({ children, href = config.registrationUrl, secondary = false }) { return <a className={`button ${secondary ? 'button-secondary' : ''}`} href={href}>{children} {!secondary && <Arrow />}</a>; }
