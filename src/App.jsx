@@ -104,6 +104,19 @@ function Creators() { const { t } = useTranslation(); const names = t('creators.
 
 function Support() { const { t } = useTranslation(); const ways = t('support.ways', { returnObjects: true }); return <section className="section support"><div className="support-image"><img src={config.supportImage} alt={t('support.alt')} loading="lazy" /><div className="support-caption"><span>01</span><strong>{t('support.caption')}</strong></div></div><div className="support-copy"><p className="eyebrow">{t('support.eyebrow')}</p><h2>{t('support.title')}</h2><p>{t('support.description')}</p><ul>{ways.map(item => <li key={item}><span>✓</span>{item}</li>)}</ul></div></section>; }
 
-function Footer() { const { t } = useTranslation(); return <footer><div className="footer-top"><div className="designer-intro"><Logo /><p>{t('footer.designer')}</p><a className="designer-phone" href={`tel:${config.phone.replace(/\s/g, '')}`}>{t('footer.phone')}: {config.phone}</a></div><div className="footer-links" aria-label={t('hero.social')}><div><small>{t('footer.social')}</small><a href={config.telegramUrl}><span className="social-mark" aria-hidden="true">✈</span>{t('footer.telegram')}</a><a href={config.socials.Instagram}><span className="social-mark" aria-hidden="true">◎</span>Instagram</a><a href={config.socials.TikTok}><span className="social-mark" aria-hidden="true">♪</span>TikTok</a><a href={config.socials.YouTube}><span className="social-mark" aria-hidden="true">▶</span>YouTube</a><a href={config.whatsappUrl}><span className="social-mark" aria-hidden="true">✆</span>{t('footer.whatsapp')}</a></div></div></div><div className="footer-bottom"><span>© 2026 {t('brand.name')}. {t('footer.copyright')}</span><span>{t('footer.privacy')}&nbsp;&nbsp; {t('footer.terms')}&nbsp;&nbsp; {t('footer.cookies')}</span></div></footer>; }
+function Footer() {
+  const { t } = useTranslation();
+  const footerSocials = [
+    { label: 'Telegram', href: config.telegramUrl, icon: FaTelegram },
+    { label: 'Instagram', href: config.socials.Instagram, icon: FaInstagram },
+    { label: 'TikTok', href: config.socials.TikTok, icon: FaTiktok },
+    { label: 'YouTube', href: config.socials.YouTube, icon: FaYoutube },
+    { label: 'WhatsApp', href: config.whatsappUrl, icon: FaWhatsapp },
+    { label: 'Facebook', href: config.socials.Facebook || '#', icon: FaFacebookF },
+    { label: 'X', href: config.socials.X || '#', icon: FaXTwitter },
+  ].filter(social => social.href && social.href !== '#');
+
+  return <footer><div className="footer-top"><div className="designer-intro"><Logo /><p>{t('footer.designer')}</p><a className="designer-phone" href={`tel:${config.phone.replace(/\s/g, '')}`}>{t('footer.phone')}: {config.phone}</a></div><div className="footer-links" aria-label={t('hero.social')}><div><small>{t('footer.social')}</small><div className="footer-social-list">{footerSocials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className="footer-social-link"><Icon aria-hidden="true" /></a>)}</div></div></div></div><div className="footer-bottom"><span>© 2026 {t('brand.name')}. {t('footer.copyright')}</span><span>{t('footer.privacy')}&nbsp;&nbsp; {t('footer.terms')}&nbsp;&nbsp; {t('footer.cookies')}</span></div></footer>;
+}
 
 export default function App() { return <><Navbar /><main><Hero /><Process /><Creators />{/* <Earnings /> */}<Support /></main><Footer /></>; }
