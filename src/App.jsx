@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaTiktok, FaYoutube, FaTelegram, FaWhatsapp, FaXTwitter, FaFacebookF, FaLinkedinIn } from 'react-icons/fa6';
 import { siteConfig as config } from './config';
+import poLogo from './assets/images/po.png';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
 const languages = [['am', 'አማርኛ'], ['en', 'English'], ['om', 'Afaan Oromoo'], ['ti', 'ትግርኛ']];
@@ -18,7 +19,7 @@ const socialLinks = [
   { label: 'LinkedIn', url: config.socials.LinkedIn || '#', icon: FaLinkedinIn },
 ].filter(link => link.url && link.url !== '#');
 
-function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><span>{config.agencyShortName}</span><b>{t('brand.name')}</b></a>; }
+function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><img src={poLogo} alt={t('brand.name')} className="logo-mark" /><b>{t('brand.name')}</b></a>; }
 function LanguageSwitcher() {
   const { i18n, t } = useTranslation();
   const dropdownRef = useRef(null);
