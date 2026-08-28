@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaInstagram, FaTiktok, FaYoutube, FaTelegram, FaWhatsapp, FaXTwitter, FaFacebookF } from 'react-icons/fa6';
+import { FaInstagram, FaTiktok, FaYoutube, FaTelegram, FaWhatsapp, FaXTwitter, FaFacebookF, FaLinkedinIn } from 'react-icons/fa6';
 import { siteConfig as config } from './config';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
@@ -15,6 +15,7 @@ const socialLinks = [
   { label: 'WhatsApp', url: config.whatsappUrl, icon: FaWhatsapp },
   { label: 'Facebook', url: config.socials.Facebook || '#', icon: FaFacebookF },
   { label: 'X', url: config.socials.X || '#', icon: FaXTwitter },
+  { label: 'LinkedIn', url: config.socials.LinkedIn || '#', icon: FaLinkedinIn },
 ].filter(link => link.url && link.url !== '#');
 
 function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><span>{config.agencyShortName}</span><b>{t('brand.name')}</b></a>; }
@@ -114,6 +115,7 @@ function Footer() {
     { label: 'WhatsApp', href: config.whatsappUrl, icon: FaWhatsapp },
     { label: 'Facebook', href: config.socials.Facebook || '#', icon: FaFacebookF },
     { label: 'X', href: config.socials.X || '#', icon: FaXTwitter },
+    { label: 'LinkedIn', href: config.socials.LinkedIn || '#', icon: FaLinkedinIn },
   ].filter(social => social.href && social.href !== '#');
 
   return <footer><div className="footer-top"><div className="designer-intro"><Logo /><p>{t('footer.designer')}</p><a className="designer-phone" href={`tel:${config.phone.replace(/\s/g, '')}`}>{t('footer.phone')}: {config.phone}</a></div><div className="footer-links" aria-label={t('hero.social')}><div><small>{t('footer.social')}</small><div className="footer-social-list">{footerSocials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className="footer-social-link"><Icon aria-hidden="true" /></a>)}</div></div></div></div><div className="footer-bottom"><span>© 2026 {t('brand.name')}. {t('footer.copyright')}</span><span>{t('footer.privacy')}&nbsp;&nbsp; {t('footer.terms')}&nbsp;&nbsp; {t('footer.cookies')}</span></div></footer>;
