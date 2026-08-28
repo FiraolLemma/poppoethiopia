@@ -1,6 +1,7 @@
 import heroImageOne from './assets/images/hero (1).jpg';
 import heroImageTwo from './assets/images/hero (2).jpg';
 import heroImageThree from './assets/images/hero (3).jpg';
+import logoImage from './assets/images/logo.jpg';
 import loginImage from './assets/images/login.png';
 import agentImage from './assets/images/agent.png';
 
@@ -16,6 +17,7 @@ export const siteConfig = {
   registrationUrl: 'https://example.com/poppo-registration',
   downloadUrl: 'https://example.com/poppo-download',
   socials: { Instagram: '#', TikTok: '#', YouTube: '#' },
+  heroImage: { src: logoImage, alt: 'Agent Fraol logo' },
   heroImages: [
     { src: heroImageOne, alt: 'Creator smiling during a live stream' },
     { src: heroImageTwo, alt: 'Creator posing for a portrait' },
