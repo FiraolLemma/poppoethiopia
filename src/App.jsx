@@ -1,10 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaInstagram, FaTiktok, FaYoutube, FaTelegram, FaWhatsapp, FaXTwitter, FaFacebookF } from 'react-icons/fa6';
 import { siteConfig as config } from './config';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
 const languages = [['am', 'አማርኛ'], ['en', 'English'], ['om', 'Afaan Oromoo'], ['ti', 'ትግርኛ']];
 const languageFlags = { am: '🇪🇹', en: '🇬🇧', om: '🇪🇹', ti: '🇪🇷' };
+
+const socialLinks = [
+  { label: 'Telegram', url: config.telegramUrl, icon: FaTelegram },
+  { label: 'Instagram', url: config.socials.Instagram, icon: FaInstagram },
+  { label: 'TikTok', url: config.socials.TikTok, icon: FaTiktok },
+  { label: 'YouTube', url: config.socials.YouTube, icon: FaYoutube },
+  { label: 'WhatsApp', url: config.whatsappUrl, icon: FaWhatsapp },
+  { label: 'Facebook', url: config.socials.Facebook || '#', icon: FaFacebookF },
+  { label: 'X', url: config.socials.X || '#', icon: FaXTwitter },
+].filter(link => link.url && link.url !== '#');
 
 function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><span>{config.agencyShortName}</span><b>{t('brand.name')}</b></a>; }
 function LanguageSwitcher() {
@@ -79,7 +90,13 @@ function Navbar() {
   return <header className="navbar"><div className="nav-inner"><Logo /><nav className={`nav-menu ${open ? 'is-open' : ''}`}><a href="#home" onClick={() => setOpen(false)}>{t('nav.home')}</a><a href="#process" onClick={() => setOpen(false)}>{t('nav.process')}</a><a href="#creators" onClick={() => setOpen(false)}>{t('nav.creators')}</a><LanguageSwitcher /></nav><button className={`menu-toggle ${open ? 'is-open' : ''}`} onClick={() => setOpen(!open)} aria-label={t('actions.toggleNavigation')} aria-expanded={open}><i></i><i></i><i></i></button></div></header>;
 }
 
-function Hero() { const { t } = useTranslation(); return <section className="hero section" id="home"><div className="hero-copy reveal"><p className="eyebrow"><span className="eyebrow-dot"></span> {t('brand.agency')}</p><h1>{t('hero.title', { name: t('brand.name') })}</h1><p className="hero-lede">{t('hero.lede')}</p><div className="hero-actions"><LanguageSwitcher /></div><div className="hero-proof"><div className="hero-social-links" aria-label={t('hero.social')}><a href={config.telegramUrl} aria-label={t('footer.telegram')}>✈</a><a href={config.socials.Instagram} aria-label="Instagram">◎</a><a href={config.socials.TikTok} aria-label="TikTok">♪</a><a href={config.socials.YouTube} aria-label="YouTube">▶</a><a href={config.whatsappUrl} aria-label={t('footer.whatsapp')}>✆</a></div><span><strong>{t('hero.join')}</strong><small>{t('hero.money')}</small></span></div></div><div className="hero-visual reveal"><div className="visual-ring"></div><div className="hero-image image-a"><img src={config.heroImage.src} alt={t('hero.alt')} /></div><div className="float-card live-card"><span className="live-dot"></span><div><b>{t('hero.agentId')}</b><small>000000000</small></div></div><div className="float-card support-card"><span className="float-icon">✦</span><div><b>{t('hero.agent')}</b><small>000000000</small></div></div><span className="visual-label">{t('hero.visual')}</span></div></section>; }
+function Hero() { const { t } = useTranslation(); return <section className="hero section" id="home"><div className="hero-copy reveal"><p className="eyebrow"><span className="eyebrow-dot"></span> {t('brand.agency')}</p><h1>{t('hero.title', { name: t('brand.name') })}</h1><p className="hero-lede">{t('hero.lede')}</p><div className="hero-actions"><LanguageSwitcher /></div><div className="hero-proof"><div className="hero-social-links" aria-label={t('hero.social')}>
+            {socialLinks.map(({ label, url, icon: Icon }) => (
+              <a key={label} href={url} target="_blank" rel="noreferrer" aria-label={label} title={label} className={`social-link social-link--${label.toLowerCase()}`}>
+                <Icon aria-hidden="true" />
+              </a>
+            ))}
+          </div><span><strong>{t('hero.join')}</strong><small>{t('hero.money')}</small></span></div></div><div className="hero-visual reveal"><div className="visual-ring"></div><div className="hero-image image-a"><img src={config.heroImage.src} alt={t('hero.alt')} /></div><div className="float-card live-card"><span className="live-dot"></span><div><b>{t('hero.agentId')}</b><small>000000000</small></div></div><div className="float-card support-card"><span className="float-icon">✦</span><div><b>{t('hero.agent')}</b><small>000000000</small></div></div><span className="visual-label">{t('hero.visual')}</span></div></section>; }
 
 function Process() { const { t } = useTranslation(); const steps = t('process.steps', { returnObjects: true }); return <section className="section process" id="process"><div className="section-heading split-heading"><div><p className="eyebrow">{t('process.eyebrow')}</p><h2>{t('process.title')}</h2></div><p>{t('process.description')}</p></div><div className="steps">{steps.map((step, index) => <article className="step" key={step.title}><div className="step-top"><span>{String(index + 1).padStart(2, '0')}</span>{index < steps.length - 1 && <i></i>}</div><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>; }
 

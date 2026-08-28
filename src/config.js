@@ -19,7 +19,7 @@ export const siteConfig = {
   phone: '+251 925 259 294',
   registrationUrl: 'https://example.com/poppo-registration',
   downloadUrl: 'https://example.com/poppo-download',
-  socials: { Instagram: '#', TikTok: '#', YouTube: '#' },
+  socials: { Instagram: '#', TikTok: '#', YouTube: '#', Facebook: '#', X: '#' },
   heroImage: { src: logoImage, alt: 'Agent Fraol logo' },
   supportImage: fraolImage,
   heroImages: [
