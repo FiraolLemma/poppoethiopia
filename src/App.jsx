@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { siteConfig as config } from './config';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
-const navItems = [['How It Works', 'process'], ['Creators', 'creators'], ['Contact', 'contact']];
+const navItems = [['How It Works', 'process'], ['Creators', 'creators']];
 
 function Logo() { return <a className="logo" href="#home" aria-label={`${config.agencyName} home`}><span>{config.agencyShortName}</span><b>{config.agencyName}</b></a>; }
 function Button({ children, href = config.registrationUrl, secondary = false }) { return <a className={`button ${secondary ? 'button-secondary' : ''}`} href={href}>{children} {!secondary && <Arrow />}</a>; }
@@ -21,8 +21,6 @@ function Creators() { return <section className="section creators" id="creators"
 
 function Support() { return <section className="section support"><div className="support-image"><img src={config.heroImages[1].src} alt="Creator preparing for a live stream" loading="lazy" /><div className="support-caption"><span>01</span><strong>You're not doing it alone.</strong></div></div><div className="support-copy"><p className="eyebrow">The human part</p><h2>Support for the moments <em>between</em> the streams.</h2><p>Great live creators are not built by a checklist. Our team is here with the context, feedback, and encouragement that keeps your momentum real.</p><ul>{['Creator onboarding', 'Content and profile guidance', 'Technical help when you need it', 'Community and growth support'].map(item => <li key={item}><span>✓</span>{item}</li>)}</ul></div></section>; }
 
-function Contact() { return <section className="section contact" id="contact"><div><p className="eyebrow">Your next move</p><h2>Ready to start your<br /><em>live-streaming journey?</em></h2><p>Join our creator community and take the first step toward becoming a Poppo Live host.</p></div><div className="contact-actions"><Button>Become a Host</Button><a className="button button-secondary" href={`mailto:${config.email}`}>Contact Us <Arrow /></a></div></section>; }
-
 function Footer() { return <footer><div className="footer-top"><div><Logo /><p>A creator-first agency for the next wave of live voices.</p></div><div className="footer-links"><div><small>Explore</small><a href="#process">How It Works</a><a href="#creators">Creators</a></div><div><small>Connect</small><a href={config.whatsappUrl}>WhatsApp</a><a href={config.telegramUrl}>Telegram</a><a href={`mailto:${config.email}`}>Email</a></div></div></div><div className="footer-bottom"><span>© 2026 {config.agencyName}. Placeholder content for client customization.</span><span>Privacy Policy&nbsp;&nbsp; Terms of Service&nbsp;&nbsp; Cookie Policy</span></div></footer>; }
 
-export default function App() { return <><Navbar /><main><Hero /><Process /><Creators />{/* <Earnings /> */}<Support /><Contact /></main><Footer /></>; }
+export default function App() { return <><Navbar /><main><Hero /><Process /><Creators />{/* <Earnings /> */}<Support /></main><Footer /></>; }
