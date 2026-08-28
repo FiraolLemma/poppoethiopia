@@ -1,23 +1,157 @@
 .language-switcher {
-  cursor: pointer;
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
-.language-switcher select {
-  appearance: none;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: #fff;
+.language-switcher__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 154px;
+  height: 42px;
+  padding: 0 12px 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(17, 19, 28, 0.8);
+  color: #f4f5f8;
+  box-shadow: 0 10px 28px rgba(8, 9, 18, 0.24);
   cursor: pointer;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  padding-left: 2px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.language-switcher option {
-  color: #12131c;
+.language-switcher__trigger:hover,
+.language-switcher__trigger:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(155, 114, 255, 0.8);
+  box-shadow: 0 14px 32px rgba(155, 114, 255, 0.18);
+  outline: none;
+}
+
+.language-switcher__trigger:active {
+  transform: translateY(0);
+}
+
+.language-switcher__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(155, 114, 255, 0.22), rgba(239, 97, 157, 0.18));
+  border: 1px solid rgba(155, 114, 255, 0.36);
+}
+
+.language-switcher__icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #f9f7ff;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.language-switcher__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.language-switcher__caret {
+  font-size: 12px;
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+.language-switcher.is-open .language-switcher__caret {
+  transform: rotate(180deg);
+}
+
+.language-switcher__panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(230px, 72vw);
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(16, 17, 27, 0.96);
+  box-shadow: 0 22px 48px rgba(3, 5, 12, 0.48);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 30;
+}
+
+.language-switcher.is-open .language-switcher__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.language-switcher__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #e5e7ef;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.language-switcher__option:hover,
+.language-switcher__option:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+
+.language-switcher__option.is-selected {
+  background: rgba(155, 114, 255, 0.12);
+  color: #fff;
+}
+
+.language-switcher__option-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.language-switcher__flag {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+}
+
+.language-switcher__check {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
 }
 
 .sr-only {
@@ -30,4 +164,16 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (max-width: 800px) {
+  .language-switcher__trigger {
+    min-width: 136px;
+    padding-right: 10px;
+  }
+
+  .language-switcher__panel {
+    right: auto;
+    left: 0;
+  }
 }

@@ -1,12 +1,77 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { siteConfig as config } from './config';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
 const languages = [['am', 'አማርኛ'], ['en', 'English'], ['om', 'Afaan Oromoo'], ['ti', 'ትግርኛ']];
+const languageFlags = { am: '🇪🇹', en: '🇬🇧', om: '🇪🇹', ti: '🇪🇷' };
 
 function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><span>{config.agencyShortName}</span><b>{t('brand.name')}</b></a>; }
-function LanguageSwitcher() { const { i18n, t } = useTranslation(); return <label className="button language-switcher"><span aria-hidden="true">文</span><span className="sr-only">{t('actions.language')}</span><select value={i18n.language} onChange={event => i18n.changeLanguage(event.target.value)} aria-label={t('actions.language')}>{languages.map(([code, label]) => <option value={code} key={code}>{label}</option>)}</select></label>; }
+function LanguageSwitcher() {
+  const { i18n, t } = useTranslation();
+  const dropdownRef = useRef(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function handleDocumentClick(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    function handleEscapeKey(event) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleDocumentClick);
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
+
+  const currentLabel = languages.find(([code]) => code === i18n.language)?.[1] ?? 'English';
+
+  return <div className={`language-switcher ${open ? 'is-open' : ''}`} ref={dropdownRef}>
+    <button type="button" className="language-switcher__trigger" onClick={() => setOpen(prev => !prev)} aria-label={t('actions.language')} aria-expanded={open} aria-haspopup="listbox">
+      <span className="language-switcher__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="8.5"></circle>
+          <path d="M3.7 12h16.6M12 3.5c2.9 2.5 4.5 5.4 4.5 8.5S14.9 17.9 12 20.5C9.1 17.9 7.5 15 7.5 12S9.1 6 12 3.5Z"></path>
+        </svg>
+      </span>
+      <span className="language-switcher__label">{currentLabel}</span>
+      <span className="language-switcher__caret" aria-hidden="true">▾</span>
+    </button>
+
+    <div className="language-switcher__panel" role="listbox" aria-label={t('actions.language')}>
+      {languages.map(([code, label]) => {
+        const selected = i18n.language === code;
+        return <button
+          type="button"
+          key={code}
+          className={`language-switcher__option ${selected ? 'is-selected' : ''}`}
+          role="option"
+          aria-selected={selected}
+          onClick={() => {
+            i18n.changeLanguage(code);
+            setOpen(false);
+          }}
+        >
+          <span className="language-switcher__option-main">
+            <span className="language-switcher__flag" aria-hidden="true">{languageFlags[code] || '🌍'}</span>
+            <span>{label}</span>
+          </span>
+          {selected && <span className="language-switcher__check" aria-hidden="true">✓</span>}
+        </button>;
+      })}
+    </div>
+  </div>;
+}
 
 function Navbar() {
   const [open, setOpen] = useState(false);
