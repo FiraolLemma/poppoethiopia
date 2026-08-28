@@ -1,0 +1,21 @@
+.hero-social-links {
+  display: flex;
+  gap: 8px;
+}
+
+.hero-social-links a {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 13px;
+  transition: .2s background, .2s color;
+}
+
+.hero-social-links a:hover {
+  background: var(--pink);
+  color: #fff;
+}
