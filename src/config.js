@@ -28,8 +28,8 @@ export const siteConfig = {
     { src: heroImageThree, alt: 'Creator in colorful studio lighting' }
   ],
   creatorImages: [
-    { name: 'Creator Name', category: '', image: loginTwoImage },
-    { name: 'Creator Name', category: 'Lifestyle', image: settingTwoImage },
-    { name: 'Creator Name', category: 'Authenticate', image: agentImage }
+    { name: 'Login Page', category: '', image: loginTwoImage },
+    { name: 'Setting Page', category: 'Lifestyle', image: settingTwoImage },
+    { name: 'Agent Page', category: 'Authenticate', image: agentImage }
   ]
 };
