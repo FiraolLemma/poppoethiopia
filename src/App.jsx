@@ -19,6 +19,26 @@ const socialLinks = [
   { label: 'LinkedIn', url: config.socials.LinkedIn || '#', icon: FaLinkedinIn },
 ].filter(link => link.url && link.url !== '#');
 
+const agentId = '64322851';
+
+function CopyIdButton({ value }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1200);
+    } catch (error) {
+      console.error('Failed to copy ID:', error);
+    }
+  };
+
+  return <button type="button" className="copy-id-button" onClick={handleCopy} aria-label={`Copy ID ${value}`} title={`Copy ID ${value}`}>
+    {copied ? 'Copied' : 'Copy'}
+  </button>;
+}
+
 function Logo() { const { t } = useTranslation(); return <a className="logo" href="#home" aria-label={t('brand.home')}><img src={poLogo} alt={t('brand.name')} className="logo-mark" /><b>{t('brand.name')}</b></a>; }
 function LanguageSwitcher() {
   const { i18n, t } = useTranslation();
@@ -98,7 +118,7 @@ function Hero() { const { t } = useTranslation(); return <section className="her
                 <Icon aria-hidden="true" />
               </a>
             ))}
-          </div><span><strong>{t('hero.join')}</strong><small>{t('hero.money')}</small></span></div></div><div className="hero-visual reveal"><div className="visual-ring"></div><div className="hero-image image-a"><img src={config.heroImage.src} alt={t('hero.alt')} /></div><div className="float-card live-card"><span className="live-dot"></span><div><b>{t('hero.agentId')}</b><small>000000000</small></div></div><div className="float-card support-card"><span className="float-icon">✦</span><div><b>{t('hero.agent')}</b><small>000000000</small></div></div><span className="visual-label">{t('hero.visual')}</span></div></section>; }
+          </div><span><strong>{t('hero.join')}</strong><small>{t('hero.money')}</small></span></div></div><div className="hero-visual reveal"><div className="visual-ring"></div><div className="hero-image image-a"><img src={config.heroImage.src} alt={t('hero.alt')} /></div><div className="float-card live-card"><span className="live-dot"></span><div className="float-card-content"><b>{t('hero.agentId')}</b><small>{agentId}</small></div><CopyIdButton value={agentId} /></div><div className="float-card support-card"><span className="float-icon">✦</span><div className="float-card-content"><b>{t('hero.agent')}</b><small>{agentId}</small></div><CopyIdButton value={agentId} /></div><span className="visual-label">{t('hero.visual')}</span></div></section>; }
 
 function Process() { const { t } = useTranslation(); const steps = t('process.steps', { returnObjects: true }); return <section className="section process" id="process"><div className="section-heading split-heading"><div><p className="eyebrow">{t('process.eyebrow')}</p><h2>{t('process.title')}</h2></div><p>{t('process.description')}</p></div><div className="steps">{steps.map((step, index) => <article className="step" key={step.title}><div className="step-top"><span>{String(index + 1).padStart(2, '0')}</span>{index < steps.length - 1 && <i></i>}</div><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>; }
 
