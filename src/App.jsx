@@ -3,9 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { FaInstagram, FaTiktok, FaYoutube, FaTelegram, FaWhatsapp, FaXTwitter, FaFacebookF, FaLinkedinIn } from 'react-icons/fa6';
 import { siteConfig as config } from './config';
 import poLogo from './assets/images/po.png';
-import login2Image from './assets/images/login2.jpg';
-import agentImage from './assets/images/agent.png';
-import logoImage from './assets/images/logo.jpg';
 
 const Arrow = () => <span aria-hidden="true">&#8599;</span>;
 const languages = [['am', 'አማርኛ'], ['en', 'English'], ['om', 'Afaan Oromoo'], ['ti', 'ትግርኛ']];
@@ -123,18 +120,7 @@ function Hero() { const { t } = useTranslation(); return <section className="her
             ))}
           </div><span><strong>{t('hero.join')}</strong><small>{t('hero.money')}</small></span></div></div><div className="hero-visual reveal"><div className="visual-ring"></div><div className="hero-image image-a"><img src={config.heroImage.src} alt={t('hero.alt')} /></div><div className="float-card live-card"><span className="live-dot"></span><div className="float-card-content"><b>{t('hero.agentId')}</b><small>{agentId}</small></div><CopyIdButton value={agentId} /></div><div className="float-card support-card"><span className="float-icon">✦</span><div className="float-card-content"><b>{t('hero.agent')}</b><small>{agentId}</small></div><CopyIdButton value={agentId} /></div><span className="visual-label">{t('hero.visual')}</span></div></section>; }
 
-function Process() { const { t } = useTranslation(); const steps = t('process.steps', { returnObjects: true });
-  const stepVisuals = [
-    <a key="play-store" href="https://play.google.com/store/apps/details?id=com.baitu.qingshu" target="_blank" rel="noreferrer" className="step-visual step-visual--link" aria-label="Open Google Play Store">
-      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
-    </a>,
-    <img key="login2" src={login2Image} alt="Login screen" className="step-visual" />,
-    <img key="agent" src={agentImage} alt="Agent screen" className="step-visual" />,
-    <img key="logo" src={logoImage} alt="Brand logo" className="step-visual" />,
-  ];
-
-  return <section className="section process" id="process"><div className="section-heading split-heading"><div><p className="eyebrow">{t('process.eyebrow')}</p><h2>{t('process.title')}</h2></div><p>{t('process.description')}</p></div><div className="steps">{steps.map((step, index) => <article className="step" key={step.title}><div className="step-top"><span className="step-visual-wrap">{stepVisuals[index]}</span>{index < steps.length - 1 && <i></i>}</div><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>;
-}
+function Process() { const { t } = useTranslation(); const steps = t('process.steps', { returnObjects: true }); return <section className="section process" id="process"><div className="section-heading split-heading"><div><p className="eyebrow">{t('process.eyebrow')}</p><h2>{t('process.title')}</h2></div><p>{t('process.description')}</p></div><div className="steps">{steps.map((step, index) => <article className="step" key={step.title}><div className="step-top"><span>{String(index + 1).padStart(2, '0')}</span>{index < steps.length - 1 && <i></i>}</div><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>; }
 
 function Creators() { const { t } = useTranslation(); const names = t('creators.names', { returnObjects: true }); const categories = t('creators.categories', { returnObjects: true }); return <section className="section creators" id="creators"><div className="section-heading"><p className="eyebrow">{t('creators.eyebrow')}</p><h2>{t('creators.title')}<br /><em>{t('creators.emphasis')}</em></h2></div><div className="creator-grid">{config.creatorImages.map((creator, index) => <article className="creator-card" key={index}><img src={creator.image} alt={t('creators.alt', { name: names[index] })} loading="lazy" /><div className="creator-overlay"><span className="tag">{categories[index]}</span><h3>{names[index]}</h3><p><span className="live-dot"></span> {t('creators.live')}</p></div></article>)}</div><p className="placeholder-note">{t('creators.note')}</p></section>; }
 
